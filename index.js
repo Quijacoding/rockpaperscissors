@@ -1,79 +1,101 @@
 const cpuChoices = ["rock", "paper", "scissors"]
+let player = ""
+let playerPoints = 0
+let cpuPoints = 0
+let rounds = 0
+
+const score = document.querySelector("#score")
+score.textContent = "Hello"
+
+
+
+const rock = document.querySelector("#rock")
+
+rock.addEventListener('click', (e) => {
+   player = "rock"
+   score.textContent = "rock"
+   playGame()
+})
+
+const paper = document.querySelector("#paper")
+
+paper.addEventListener('click', (e) => {
+   player = "paper"
+   score.textContent = "paper"
+   playGame()
+})
+
+const scissors = document.querySelector("#scissors")
+
+scissors.addEventListener('click', (e) => {
+   player = "scissors"
+   playGame()
+})
+
+
+
+function getComputerChoice () {
+   let cpuTurn =  Math.floor(Math.random() * 3)
+   const computerChoice = cpuChoices[cpuTurn]
+   return computerChoice
+}
 
 function playGame() {
-   let playerPoints = 0
-   let cpuPoints = 0
-   let rounds = 0
-   if (rounds == 5) {
-      console.log("GAME OVER!")
-      if (playerPoints > cpuPoints) {
+
+      const computerChoice = getComputerChoice();
+      playRound(player, computerChoice)
+      rounds++
+      if (rounds === 5) {
+   console.log("GAME OVER!")
+} 
+      if (playerPoints > cpuPoints && rounds === 5) {
          console.log("PLAYER WINS! CPU LOSES!")
-      } else {
+      } else if (cpuPoints > playerPoints && rounds === 5) {
          console.log("CPU WINS! PLAYER LOSES!")
+      } else if (cpuPoints === playerPoints && rounds === 5) {
+         console.log("TIE!")
       }
-   }
-
-   function getComputerChoice () {
-      cpuTurn =  Math.floor(Math.random() * 3)
-      const computerChoice = cpuChoices[cpuTurn]
-      return computerChoice
-   }
-   
-   const playerChoice = prompt("Rock Paper Scissors?")
-   const computerChoice = getComputerChoice();
-   
-   function playRound(playerChoice, computerChoice) {
-            player = playerChoice.toLowerCase()
-            cpu = computerChoice.toLowerCase()
-            if (player === cpu) {
-               console.log("Tie! No one wins!")
-               rounds++
-            } else if (player === "rock") {
-               if (cpu === "scissors") {
-               console.log("Player wins! Rock beats scissors!")
-               rounds++
-               playerPoints++
-             } else {
-               console.log("CPU wins! Paper beats rock!")
-               rounds++
-               cpuPoints++
-             }
-            } else if (player === "paper") {
-               if (cpu === "rock") {
-               console.log("Player wins! Paper beats rock!")
-               rounds++
-               playerPoints++
-             } else {
-               console.log("CPU wins! Scissors beats paper!")
-               rounds++
-               cpuPoints++
-             } 
-            } else if (player === "scissors") {
-               if (cpu === "paper") {
-               console.log("Player wins! Scissors beats paper!")
-               rounds++
-               playerPoints++
-             } else {
-               console.log("CPU wins! Rock beats scissors!")
-               rounds++
-               cpuPoints++
-             } 
-   }
-   }
-
-   function getComputerChoice () {
-      cpuTurn =  Math.floor(Math.random() * 3)
-      const computerChoice = cpuChoices[cpuTurn]
-      return computerChoice
-   }
-   
-   for (let i = 0; i < 5; i++) {
-         playRound(playerChoice, computerChoice)
-
-   }
    
 }
 
 
+function playRound(playerChoice, computerChoice) {
+   player = playerChoice.toLowerCase()
+   cpu = computerChoice.toLowerCase()
 
-console.log(playGame())
+
+   if (player === cpu) {
+      console.log("Tie! No one wins!")
+      
+   } else if (player === "rock") {
+      if (cpu === "scissors") {
+      console.log("Player wins! Rock beats scissors!")
+      
+      playerPoints++
+    } else {
+      console.log("CPU wins! Paper beats rock!")
+      
+      cpuPoints++
+    }
+   } else if (player === "paper") {
+      if (cpu === "rock") {
+      console.log("Player wins! Paper beats rock!")
+      
+      playerPoints++
+    } else {
+      console.log("CPU wins! Scissors beats paper!")
+      
+      cpuPoints++
+    } 
+   } else if (player === "scissors") {
+      if (cpu === "paper") {
+      console.log("Player wins! Scissors beats paper!")
+      
+      playerPoints++
+    } else {
+      console.log("CPU wins! Rock beats scissors!")
+      
+      cpuPoints++
+    } 
+}
+}
