@@ -1,0 +1,14 @@
+button {
+    color: red;
+    
+}
+
+#p1-score {
+    color: blue;
+    font-size: 40px;
+}
+
+#cpu-score {
+    color: red;
+    font-size: 40px;
+}

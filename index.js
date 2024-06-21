@@ -5,15 +5,15 @@ let cpuPoints = 0
 let rounds = 0
 
 const score = document.querySelector("#score")
-score.textContent = "Hello"
+score.textContent = "?"
 
-
+const p1score = document.querySelector("#p1-score")
+const cpuscore = document.querySelector("#cpu-score")
 
 const rock = document.querySelector("#rock")
 
 rock.addEventListener('click', (e) => {
    player = "rock"
-   score.textContent = "rock"
    playGame()
 })
 
@@ -21,7 +21,6 @@ const paper = document.querySelector("#paper")
 
 paper.addEventListener('click', (e) => {
    player = "paper"
-   score.textContent = "paper"
    playGame()
 })
 
@@ -49,11 +48,12 @@ function playGame() {
    console.log("GAME OVER!")
 } 
       if (playerPoints > cpuPoints && rounds === 5) {
-         console.log("PLAYER WINS! CPU LOSES!")
+         score.textContent = "PLAYER WINS! CPU LOSES!"
+         
       } else if (cpuPoints > playerPoints && rounds === 5) {
-         console.log("CPU WINS! PLAYER LOSES!")
+         score.textContent = "CPU WINS! PLAYER LOSES!"
       } else if (cpuPoints === playerPoints && rounds === 5) {
-         console.log("TIE!")
+         score.textContent = "TIE!"
       }
    
 }
@@ -97,5 +97,8 @@ function playRound(playerChoice, computerChoice) {
       
       cpuPoints++
     } 
+    
 }
+p1score.textContent = playerPoints
+cpuscore.textContent = cpuPoints
 }
